@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine Letter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  font-family: Georgia, serif;
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ff9acb,#ff5fa2);
+  overflow:hidden;
+}
+
+/* FLOATING HEARTS */
+.heart{
+  position:absolute;
+  bottom:-20px;
+  width:15px;
+  height:15px;
+  background:pink;
+  transform:rotate(45deg);
+  animation: floatUp 8s linear infinite;
+  opacity:0.7;
+}
+.heart:before,.heart:after{
+  content:"";
+  width:15px;
+  height:15px;
+  background:pink;
+  border-radius:50%;
+  position:absolute;
+}
+.heart:before{top:-7px;left:0;}
+.heart:after{left:-7px;top:0;}
+
+@keyframes floatUp{
+  from{transform:translateY(0) rotate(45deg);}
+  to{transform:translateY(-110vh) rotate(45deg);}
+}
+
+.container{
+  background:linear-gradient(135deg,#ffe0ef,#ffc2dc);
+  padding:25px;
+  border-radius:20px;
+  max-width:500px;
+  width:90%;
+  text-align:center;
+  animation: fade 1s;
+  box-shadow:0 0 20px rgba(255,105,180,.5);
+}
+
+.hidden{display:none;}
+
+@keyframes fade{
+  from{opacity:0; transform:scale(0.9);}
+  to{opacity:1; transform:scale(1);}
+}
+
+.option{
+  background:#ffd1e6;
+  margin:10px 0;
+  padding:10px;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+/* ENVELOPE */
+.envelope{
+  width:260px;
+  height:170px;
+  background:#ff7eb3;
+  margin:30px auto;
+  position:relative;
+  border-radius:10px;
+  overflow:hidden;
+}
+.envelope .flap{
+  position:absolute;
+  width:0;
+  height:0;
+  border-left:130px solid transparent;
+  border-right:130px solid transparent;
+  border-bottom:90px solid #ff4f9a;
+  top:0;
+  left:0;
+  transform-origin:top;
+  animation: openFlap 2s forwards;
+}
+
+@keyframes openFlap{
+  from{transform:rotateX(0deg);}
+  to{transform:rotateX(180deg);}
+}
+
+.letter-box{
+  background:linear-gradient(135deg,#fff0f7,#ffd6eb);
+  padding:20px;
+  border-radius:15px;
+  line-height:1.7;
+  animation: fade 1.5s;
+  box-shadow:0 0 15px rgba(255,105,180,.4);
+}
+
+.next-btn{
+  display:inline-block;
+  margin-top:20px;
+  background:#ff5fa2;
+  color:white;
+  padding:10px 20px;
+  border-radius:20px;
+  cursor:pointer;
+  border:none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- FLOATING HEARTS -->
+<script>
+for(let i=0;i<20;i++){
+ let h=document.createElement("div");
+ h.className="heart";
+ h.style.left=Math.random()*100+"%";
+ h.style.animationDelay=Math.random()*5+"s";
+ h.style.opacity=Math.random();
+ document.body.appendChild(h);
+}
+</script>
+
+<div class="container">
+
+<audio id="bg-music" loop>
+<source src="https://drive.google.com/uc?export=download&id=1lLc002ujH2auxDr3RIx4Ak7x-1LOY8KS" type="audio/mpeg">
+</audio>
+
+<!-- PASSWORD -->
+<div id="password-page">
+<h2>Enter the Secret Code!</h2>
+<input type="password" id="password-input">
+<br><br>
+<button class="next-btn" onclick="checkPassword()">Unlock</button>
+<p>Hint: mewo</p>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz-container" class="hidden">
+
+<div id="question-1">
+<p>1. Have I fallen in love the first time we've met?</p>
+<div class="option" onclick="selectAnswer(1,'a')">a. No</div>
+<div class="option" onclick="selectAnswer(1,'b')">b. Maybe</div>
+<div class="option" onclick="selectAnswer(1,'c')">c. Absolutely</div>
+</div>
+
+<div id="question-2" class="hidden">
+<p>2. What was our first CS?</p>
+<div class="option" onclick="selectAnswer(2,'a')">a. baby</div>
+<div class="option" onclick="selectAnswer(2,'b')">b. love</div>
+<div class="option" onclick="selectAnswer(2,'c')">c. N word</div>
+</div>
+
+<div id="question-3" class="hidden">
+<p>3. Who do I love the most?</p>
+<div class="option" onclick="selectAnswer(3,'a')">a. Baby Bella</div>
+<div class="option" onclick="selectAnswer(3,'b')">b. Jihh-jihh</div>
+<div class="option" onclick="selectAnswer(3,'c')">c. Love both equally</div>
+</div>
+
+</div>
+
+<!-- ENVELOPE -->
+<div id="envelope-page" class="hidden">
+<h3>You unlocked a letter 💌</h3>
+<div class="envelope">
+<div class="flap"></div>
+</div>
+<button class="next-btn" onclick="openLetter()">Open Letter</button>
+</div>
+
+<!-- MESSAGE 1 -->
+<div id="message-1" class="hidden">
+<div class="letter-box">
+<p>Happy Valentine's Day bff- ay Jihh-jihh ko!</p>
+<button class="next-btn" onclick="nextMessage()">Next 💖</button>
+</div>
+</div>
+
+<!-- MESSAGE 2 -->
+<div id="message-2" class="hidden">
+<div class="letter-box">
+<p>
+Ginawa ko talagang sure na hindi ka magiisa ngayong araw, ha?  
+Never forget, you always have your pogi BF na si Luwes HWAHAHAHA.  
+Pogi na, luwes pa, walang palalag daii!
+<br><br>
+Sige na, set aside the jokes muna, I love you po so muchh, and tomorrow is our 10th month together.  
+Thank you for being by my side sa sadness, down moments, at lowest points ng life ko.  
+I just want to say how grateful I am for you right now.
+<br><br>
+Salamat sa pagiging patient with me, for supporting me always, and for trying your best for us.  
+Having you makes everything lighter and happier.  
+Appreciate ko yung small things you do everyday, kahit hindi mo napapansin how much they matter.  
+You make me feel cared for, valued, and loved ng sobrang lalim.
+</p>
+<button class="next-btn" onclick="nextMessage()">Next 💖</button>
+</div>
+</div>
+
+<!-- MESSAGE 3 -->
+<div id="message-3" class="hidden">
+<div class="letter-box">
+<p>
+I may not be the first you loved, the one that made your heart race, or nagpaniwala sa love.  
+Pero gusto ko maging the one who stays when everything fades.  
+The one who proves love can be gentle, true, and lasting.  
+Not your first, but I want to be your forever.
+<br><br>
+I'll always be your biggest supporter, there anytime you need.  
+You can lean on me kapag pagod ka.  
+When the world feels like its against you and weighs you down, i'll always be here po, soon to be your tagaluto, taga innaw and taga laba ay- WHAHAHAHAH.  
+Tatagal ako even if everyone else leaves.
+<br><br>
+Whatever happens, remember: I'm always here, cause no matter how cruel the world is, you'll always have me.  
+We'll find a way to conquer all the challenges together!
+</p>
+<strong>With all my love, sa nagiisang kupal bestie and bf, Luwes 💖</strong>
+</div>
+</div>
+
+</div>
+
+<script>
+const correctAnswers={1:"c",2:"c",3:"c"};
+let currentMessage=1;
+const music=document.getElementById("bg-music");
+
+function checkPassword(){
+let pass=document.getElementById("password-input").value;
+if(pass==="mewo"){
+document.getElementById("password-page").classList.add("hidden");
+document.getElementById("quiz-container").classList.remove("hidden");
+document.getElementById("question-1").classList.remove("hidden");
+}else{alert("Wrong password!");}
+}
+
+function selectAnswer(q,choice){
+if(choice===correctAnswers[q]){
+document.getElementById("question-"+q).classList.add("hidden");
+if(q<3){
+document.getElementById("question-"+(q+1)).classList.remove("hidden");
+}else{
+document.getElementById("quiz-container").classList.add("hidden");
+document.getElementById("envelope-page").classList.remove("hidden");
+}
+}else{alert("Try again");}
+}
+
+function openLetter(){
+document.getElementById("envelope-page").classList.add("hidden");
+document.getElementById("message-1").classList.remove("hidden");
+music.volume=0.5;
+music.play();
+}
+
+function nextMessage(){
+document.getElementById("message-"+currentMessage).classList.add("hidden");
+currentMessage++;
+document.getElementById("message-"+currentMessage).classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
