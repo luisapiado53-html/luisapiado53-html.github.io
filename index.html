@@ -7,9 +7,9 @@
 
 <style>
 body{
-  font-family: Georgia, serif;
+  font-family: 'Georgia', serif;
   margin:0;
-  height:100vh;
+  min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -25,7 +25,7 @@ body{
   height:15px;
   background:pink;
   transform:rotate(45deg);
-  animation: floatUp 8s linear infinite;
+  animation: floatUp 10s linear infinite;
   opacity:0.7;
 }
 .heart:before,.heart:after{
@@ -41,18 +41,18 @@ body{
 
 @keyframes floatUp{
   from{transform:translateY(0) rotate(45deg);}
-  to{transform:translateY(-110vh) rotate(45deg);}
+  to{transform:translateY(-120vh) rotate(45deg);}
 }
 
 .container{
   background:linear-gradient(135deg,#ffe0ef,#ffc2dc);
   padding:25px;
-  border-radius:20px;
-  max-width:500px;
+  border-radius:25px;
+  max-width:520px;
   width:90%;
   text-align:center;
   animation: fade 1s;
-  box-shadow:0 0 20px rgba(255,105,180,.5);
+  box-shadow:0 0 25px rgba(255,105,180,.6);
 }
 
 .hidden{display:none;}
@@ -65,9 +65,15 @@ body{
 .option{
   background:#ffd1e6;
   margin:10px 0;
-  padding:10px;
-  border-radius:12px;
+  padding:12px;
+  border-radius:14px;
   cursor:pointer;
+  font-size:1rem;
+  transition:0.3s;
+}
+.option:hover{
+  background:#ffb6d9;
+  transform:scale(1.03);
 }
 
 /* ENVELOPE */
@@ -98,33 +104,45 @@ body{
   to{transform:rotateX(180deg);}
 }
 
+/* LETTER */
 .letter-box{
   background:linear-gradient(135deg,#fff0f7,#ffd6eb);
-  padding:20px;
-  border-radius:15px;
-  line-height:1.7;
+  padding:22px;
+  border-radius:18px;
+  line-height:1.8;
   animation: fade 1.5s;
-  box-shadow:0 0 15px rgba(255,105,180,.4);
+  box-shadow:0 0 18px rgba(255,105,180,.4);
+  font-family: "Brush Script MT", "Segoe Script", cursive;
+  font-size: clamp(14px, 3.5vw, 17px);
+}
+
+.letter-box p{
+  margin-bottom:15px;
 }
 
 .next-btn{
   display:inline-block;
-  margin-top:20px;
+  margin-top:18px;
   background:#ff5fa2;
   color:white;
-  padding:10px 20px;
-  border-radius:20px;
+  padding:10px 22px;
+  border-radius:25px;
   cursor:pointer;
   border:none;
+  font-size:1rem;
+  transition:0.3s;
+}
+.next-btn:hover{
+  background:#ff2f87;
+  transform:scale(1.05);
 }
 </style>
 </head>
 
 <body>
 
-<!-- FLOATING HEARTS -->
 <script>
-for(let i=0;i<20;i++){
+for(let i=0;i<25;i++){
  let h=document.createElement("div");
  h.className="heart";
  h.style.left=Math.random()*100+"%";
@@ -140,16 +158,14 @@ for(let i=0;i<20;i++){
 <source src="https://drive.google.com/uc?export=download&id=1lLc002ujH2auxDr3RIx4Ak7x-1LOY8KS" type="audio/mpeg">
 </audio>
 
-<!-- PASSWORD -->
 <div id="password-page">
-<h2>Enter the Secret Code!</h2>
+<h2>Enter the Secret Code 💖</h2>
 <input type="password" id="password-input">
 <br><br>
 <button class="next-btn" onclick="checkPassword()">Unlock</button>
 <p>Hint: mewo</p>
 </div>
 
-<!-- QUIZ -->
 <div id="quiz-container" class="hidden">
 
 <div id="question-1">
@@ -175,7 +191,6 @@ for(let i=0;i<20;i++){
 
 </div>
 
-<!-- ENVELOPE -->
 <div id="envelope-page" class="hidden">
 <h3>You unlocked a letter 💌</h3>
 <div class="envelope">
@@ -184,53 +199,49 @@ for(let i=0;i<20;i++){
 <button class="next-btn" onclick="openLetter()">Open Letter</button>
 </div>
 
-<!-- MESSAGE 1 -->
 <div id="message-1" class="hidden">
 <div class="letter-box">
-<p>Happy Valentine's Day bff- ay Jihh-jihh ko!</p>
+<p>Happy Valentine's Day bff- ay Jihh-jihh koww!</p>
 <button class="next-btn" onclick="nextMessage()">Next 💖</button>
 </div>
 </div>
 
-<!-- MESSAGE 2 -->
 <div id="message-2" class="hidden">
 <div class="letter-box">
 <p>
-Ginawa ko talagang sure na hindi ka magiisa ngayong araw, ha?  
-Never forget, you always have your pogi BF na si Luwes HWAHAHAHA.  
-Pogi na, luwes pa, walang palalag daii!
+Ginawa ko talagang sure na hindi ka mag-isa ngayong araw, ha?  
+Never forget, you always have your pogi BF na si Luwes HAHAHAHA.  
+Pogi na, luwes pa, walang palalag dai!
 <br><br>
-Sige na, set aside the jokes muna, I love you po so muchh, and tomorrow is our 10th month together.  
+Set aside the jokes muna, I love you so so much. Tomorrow is our 10th month together.  
 Thank you for being by my side sa sadness, down moments, at lowest points ng life ko.  
 I just want to say how grateful I am for you right now.
 <br><br>
 Salamat sa pagiging patient with me, for supporting me always, and for trying your best for us.  
 Having you makes everything lighter and happier.  
-Appreciate ko yung small things you do everyday, kahit hindi mo napapansin how much they matter.  
-You make me feel cared for, valued, and loved ng sobrang lalim.
+You make me feel cared for, valued, and loved in ways I never imagined.
 </p>
 <button class="next-btn" onclick="nextMessage()">Next 💖</button>
 </div>
 </div>
 
-<!-- MESSAGE 3 -->
 <div id="message-3" class="hidden">
 <div class="letter-box">
 <p>
-I may not be the first you loved, the one that made your heart race, or nagpaniwala sa love.  
-Pero gusto ko maging the one who stays when everything fades.  
+I may not be the first you loved, but I want to be the one who stays.  
 The one who proves love can be gentle, true, and lasting.  
 Not your first, but I want to be your forever.
 <br><br>
-I'll always be your biggest supporter, there anytime you need.  
-You can lean on me kapag pagod ka.  
-When the world feels like its against you and weighs you down, i'll always be here po, soon to be your tagaluto, taga innaw and taga laba ay- WHAHAHAHAH.  
-Tatagal ako even if everyone else leaves.
+I'll always be your biggest supporter and safe place.  
+You can lean on me kapag pagod ka, really sorry i made you feel what i deserve instead.  
+When the world feels heavy, I'll be here — your future tagaluto, taga-inom, at taga-laba HAHAHA.
 <br><br>
-Whatever happens, remember: I'm always here, cause no matter how cruel the world is, you'll always have me.  
-We'll find a way to conquer all the challenges together!
+Whatever happens, remember: you'll never face the world alone. Final promise i'll stay
+by your side, you've faced the world alone tas pinapairal ko ugali ko apaka fucker ikr, i'll change even you don't believe m.
+i love you po very much (insert the 2 babies mwawers..)  '  
+We'll conquer everything together.
 </p>
-<strong>With all my love, sa nagiisang kupal bestie and bf, Luwes 💖</strong>
+<strong>With all my love, your Pogi/Handsome/nataraki besprin and boyfriend, Luwes alsem.</strong>
 </div>
 </div>
 
@@ -259,7 +270,7 @@ document.getElementById("question-"+(q+1)).classList.remove("hidden");
 document.getElementById("quiz-container").classList.add("hidden");
 document.getElementById("envelope-page").classList.remove("hidden");
 }
-}else{alert("Try again");}
+}else{alert("Try again 💔");}
 }
 
 function openLetter(){
